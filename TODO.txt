@@ -1,0 +1,2 @@
+* Show "Last run" for every schedule
+* Send email on new entry
