@@ -120,7 +120,7 @@
 		                </tr></thead>
 		            {% for cron in entry_list %}
 		                <tr>
-	                		<td>{% if cron.enabled %} <i class="icon-play"></i> {% else %} <i class="icon-stop"></i> {% endif %}</td>
+	                		<td>{% if cron.approved %} <i class="icon-play"></i> {% else %} <i class="icon-stop"></i> {% endif %}</td>
 		                	<td>{{ cron.gh_project }}</td>
 		                	<td>{{ cron.cronjob.description }}</td>
 		                </tr>
