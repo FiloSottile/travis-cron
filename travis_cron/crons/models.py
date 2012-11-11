@@ -15,9 +15,6 @@ class Cronjob(models.Model):
     def need_run(self):
         return datetime.now() > (self.last_run + timedelta(seconds=self.run_every))
 
-    def get_entries(self):
-        return self.entry_set.all()
-
     def before_next_run(self):
         t = self.last_run + timedelta(seconds=self.run_every) - datetime.now()
         return t.seconds + t.microseconds / 1E6 + t.days * 86400
