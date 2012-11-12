@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
+from django.core.mail import mail_admins
 
 def index(request):
     entry_list = Entry.objects.all().order_by('sub_date')
@@ -25,6 +26,11 @@ def new(request):
                       special_requests = request.POST['special_requests'])
         entry.full_clean()
         entry.save()
+
+        mail_message = "%s - %s\n\n%s\n\nSpecial requests:\n%s\n" % (entry.gh_project, entry.cronjob.description, 
+                                                                     entry.motivation, entry.special_requests or 'None :)')
+        mail_admins('New entry!', mail_message)
+
         return HttpResponseRedirect(reverse('crons.views.index'))
 
     except KeyError:

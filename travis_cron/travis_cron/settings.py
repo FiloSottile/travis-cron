@@ -11,6 +11,14 @@ MANAGERS = ADMINS
 
 SITE_ROOT = '/Users/filosottile/git/travis-cron/travis_cron/'
 
+EMAIL_SUBJECT_PREFIX = '[Travis cron] '
+SERVER_EMAIL = 'travis.cron@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'travis.cron@gmail.com'
+EMAIL_HOST_PASSWORD = 'Bd4ejnk5TzF1' # Hey, I see you!
+EMAIL_USE_TLS = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',     # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
