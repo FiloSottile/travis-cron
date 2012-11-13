@@ -38,6 +38,7 @@
 
                 <h3>Activate a new trigger</h3>
                 <p>At the moment new triggers are manually moderated, but I'll try to be as fast as possible. <strong>Please don't abuse this service</strong>, it is meant only for projects that need regular testing.</p>
+                <p><em>You will be taken to a GitHub authorization page. We'll use the GitHub token only to exchange it for a Travis CI one. As <a href="https://api.travis-ci.org/docs/#Authorization">the Travis API</a> is still new, this is still the only implemented way to authenticate through OAuth.</em></p>
 
                 {% if error_message %}<p class="text-error">{{ error_message }}</p>{% endif %}
 
@@ -63,26 +64,9 @@
 					    	</div>
 					  	</div>
 
-						<div class="control-group">
-					    	<label class="control-label" for="github_user">GitHub and Travis user</label>
-					    	<div class="controls">
-					      		<input type="text" id="github_user" name="github_user" placeholder="FiloSottile">
-					    	</div>
-					  	</div>
-
-						<div class="control-group">
-					    	<label class="control-label" for="travis_token">Travis CI token</label>
-					    	<div class="controls">
-					      		<input type="text" id="travis_token" name="travis_token" placeholder="">
-					    	</div>
-					  	</div>
-
-						<div class="control-group">
-					    	<label class="control-label" for="repository_owner_name">GitHub repo owner</label>
-					    	<div class="controls">
-					      		<input type="text" id="repository_owner_name" name="repository_owner_name" placeholder="rg3">
-					    	</div>
-					  	</div>
+					  	<div class="control-group">
+				  			<button class="btn btn-primary btn-large span4" type="submit">Submit</button>	
+				  		</div>
 
 					</div><div class="offset1 span5">
 
@@ -99,12 +83,6 @@
 					      		<textarea id="special_requests" name="special_requests" rows="3" class="span4"></textarea>
 					    	</div>
 					  	</div>
-
-					  	<div class="control-group">
-				  			<div class="controls">
-					  			<button class="btn btn-large btn-block btn-primary" type="submit">Submit</button>
-				  			</div>
-				  		</div>
 
 					</div></div>
 		  			

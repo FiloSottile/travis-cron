@@ -28,9 +28,9 @@ class Entry(models.Model):
     sub_date = models.DateTimeField('date submitted', auto_now_add=True)
     approved = models.BooleanField(default=False)
 
-    github_user = models.CharField(max_length=200)
-    travis_token  = models.CharField(max_length=200)
-    repository_owner_name = models.CharField(max_length=200)
+    #github_user = models.CharField(max_length=200)
+    travis_token = models.CharField(max_length=200, blank=True)
+    #repository_owner_name = models.CharField(max_length=200)
 
     motivation = models.CharField(max_length=500)
     special_requests = models.CharField(max_length=500, blank=True)

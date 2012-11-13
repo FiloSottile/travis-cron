@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import mail_admins
 
 def index(request):
-    entry_list = Entry.objects.all().order_by('sub_date')
+    entry_list = Entry.objects.exclude(travis_token = '').order_by('sub_date')
     cron_list = Cronjob.objects.all()
     return render_to_response('crons_index.html',
                               { 'entry_list': entry_list, 'cron_list': cron_list },
@@ -19,9 +19,9 @@ def new(request):
     try:
         entry = Entry(gh_project = request.POST['gh_project'],
                       cronjob = Cronjob.objects.get(pk=request.POST['cronjob']),
-                      github_user = request.POST['github_user'],
-                      travis_token = request.POST['travis_token'],
-                      repository_owner_name = request.POST['repository_owner_name'],
+                      #github_user = request.POST['github_user'],
+                      travis_token = '',
+                      #repository_owner_name = request.POST['repository_owner_name'],
                       motivation = request.POST['motivation'],
                       special_requests = request.POST['special_requests'])
         entry.full_clean()
