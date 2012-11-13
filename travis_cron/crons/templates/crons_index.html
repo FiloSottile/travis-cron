@@ -37,11 +37,11 @@
             	</div>
 
                 <p>At <a href="https://github.com/rg3/youtube-dl">youtube-dl</a> we love <a href="https://travis-ci.org/">Travis CI</a>, the Free Hosted Continuous Integration Platform for the Open Source Community. But, as what we do is scraping, and websites change even if our code doesn't, we need to run tests periodically.</p>
-                <p>The awsome guys at Travis CI <a href="https://github.com/travis-ci/travis-ci/issues/582">are working</a> on implementing such a feature, but in the mean time this little web app allows you to set up daily, weekly, or personalized (feedback on better schedules appreciated) triggers for your project tests.</p>
+                <p>The awesome guys at Travis CI <a href="https://github.com/travis-ci/travis-ci/issues/582">are working</a> on implementing such a feature, but in the mean time this little web app allows you to set up daily, weekly, or personalized (feedback on better schedules appreciated) triggers for your project tests.</p>
 
                 <h3>Activate a new trigger</h3>
                 <p>At the moment new triggers are manually moderated, but I'll try to be as fast as possible. <strong>Please don't abuse this service</strong>, it is meant only for projects that need regular testing.</p>
-                <p><em>You will be taken to a GitHub authorization page. We'll use the GitHub token only to exchange it for a Travis CI one. As <a href="https://api.travis-ci.org/docs/#Authorization">the Travis API</a> is still new, this is still the only implemented way to authenticate through OAuth.</em></p>
+                <p><em>You will be taken to a GitHub authorization page. We'll use the GitHub token only to exchange it for a Travis CI one. As <a href="https://api.travis-ci.org/docs/#Authorization">the Travis API</a> is still new, this is still the only implemented way to authenticate through OAuth. <strong>Also, make sure to have already run at least one build.</strong></em></p>
 
                 {% if error_message %}<p class="text-error">{{ error_message }}</p>{% endif %}
 

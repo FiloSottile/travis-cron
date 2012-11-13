@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     # url(r'^travis_cron/', include('travis_cron.foo.urls')),
     url(r'^$', 'crons.views.index'),
     url(r'^new$', 'crons.views.new'),
+    url(r'^callback$', 'crons.views.callback'),
 
     (r'^robots\.txt$', direct_to_template,
      {'template': 'robots.txt', 'mimetype': 'text/plain'}),

@@ -21,6 +21,9 @@ EMAIL_HOST_USER = 'travis.cron@gmail.com'
 EMAIL_HOST_PASSWORD = confidential_settings.EMAIL_PASSWORD
 EMAIL_USE_TLS = True
 
+GITHUB_CLIENT_ID = 'a5d881f9ee796d1c3d2c'
+GITHUB_CLIENT_SECRET = confidential_settings.GH_SECRET
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',     # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -131,6 +134,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+
+    'django.contrib.sessions',
 
     'crons',
 )

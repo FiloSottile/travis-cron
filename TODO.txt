@@ -1,2 +1,2 @@
-* Implement the OAuth stack
 * Check responsiveness
+* Success dialog
