@@ -1,9 +1,12 @@
 from django.core.management.base import BaseCommand, CommandError
 from crons.models import Entry, Cronjob
 from time import sleep
+from travis_ping import travis_ping
 
 def ping(entry):
-    pass
+    travis_token = entry.travis_token
+    repository = entry.gh_project
+    return travis_ping(travis_token, repository)
 
 class Command(BaseCommand):
     help = 'Run the worker that performs the pings to Travis'
