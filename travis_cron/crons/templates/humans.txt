@@ -8,11 +8,10 @@
 # THANKS
 
     Travis CI
-    https://github.com/jpmckinney/travis-ping/
     PythonAnywhere
 
 # TECHNOLOGY COLOPHON
 
-	Python, Django
+    Python, Django
     HTML5, CSS3
     jQuery, Modernizr
