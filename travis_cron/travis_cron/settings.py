@@ -1,5 +1,7 @@
 # Django settings for travis_cron project.
 
+import confidential_settings
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -16,7 +18,7 @@ SERVER_EMAIL = 'travis.cron@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'travis.cron@gmail.com'
-EMAIL_HOST_PASSWORD = 'Bd4ejnk5TzF1' # Hey, I see you!
+EMAIL_HOST_PASSWORD = confidential_settings.EMAIL_PASSWORD
 EMAIL_USE_TLS = True
 
 DATABASES = {

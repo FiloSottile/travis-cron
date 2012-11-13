@@ -16,8 +16,6 @@ urlpatterns = patterns('',
      {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     (r'^humans\.txt$', direct_to_template,
      {'template': 'humans.txt', 'mimetype': 'text/plain'}),
-    (r'^favicon\.ico$', direct_to_template,
-     {'template': 'favicon.ico', 'mimetype': 'image/x-icon'}),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
