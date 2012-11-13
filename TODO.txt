@@ -1,3 +1,2 @@
 * Implement the OAuth stack
 * Check responsiveness
-* README.md
