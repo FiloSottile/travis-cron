@@ -1,2 +1,3 @@
-* Show "Last run" for every schedule
 * Implement the OAuth stack
+* robots/humans.txt
+* Check responsiveness

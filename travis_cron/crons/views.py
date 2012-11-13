@@ -27,6 +27,7 @@ def new(request):
         entry.full_clean()
         entry.save()
 
+        # TODO move email to the end of OAuth
         mail_message = "%s - %s\n\n%s\n\nSpecial requests:\n%s\n" % (entry.gh_project, entry.cronjob.description, 
                                                                      entry.motivation, entry.special_requests or 'None :)')
         mail_admins('New entry!', mail_message)
