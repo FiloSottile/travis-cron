@@ -1,0 +1,10 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.last-run {
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
