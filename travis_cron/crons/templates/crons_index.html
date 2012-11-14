@@ -10,13 +10,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
 
-        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
 
-        <script src="/static/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -28,13 +28,13 @@
         <div class="container">
 
             <div class="well well-large">
-            	<h1>The Travis CI cron trigger</h1>
+                <h1>The Travis CI cron trigger</h1>
                 <div class="well last-run pull-right span3">
-            		<p>Latest run time per schedule</p>
-            		{% for cronjob in cron_list %}
-					    <b>{{ cronjob.description }}</b> - {{ cronjob.last_run|date:"H:i T d M Y" }}<br>
-					{% endfor %}
-            	</div>
+                    <p>Latest run time per schedule</p>
+                    {% for cronjob in cron_list %}
+                        <b>{{ cronjob.description }}</b> - {{ cronjob.last_run|date:"H:i T d M Y" }}<br>
+                    {% endfor %}
+                </div>
 
                 <p>At <a href="https://github.com/rg3/youtube-dl">youtube-dl</a> we love <a href="https://travis-ci.org/">Travis CI</a>, the Free Hosted Continuous Integration Platform for the Open Source Community. But, as what we do is scraping, and websites change even if our code doesn't, we need to run tests periodically.</p>
                 <p>The awesome guys at Travis CI <a href="https://github.com/travis-ci/travis-ci/issues/582">are working</a> on implementing such a feature, but in the mean time this little web app allows you to set up daily, weekly, or personalized (feedback on better schedules appreciated) triggers for your project tests.</p>
@@ -46,70 +46,70 @@
                 {% if error_message %}<p class="text-error">{{ error_message }}</p>{% endif %}
 
                 <form class="form-horizontal" action="/new" method="post">
-					{% csrf_token %}
-					<div class="row"><div class="span4">
+                    {% csrf_token %}
+                    <div class="row"><div class="span4">
 
-						<div class="control-group">
-					    	<label class="control-label" for="gh_project">GitHub project</label>
-					    	<div class="controls">
-					      		<input type="text" id="gh_project" name="gh_project" placeholder="rg3/youtube-dl">
-					    	</div>
-					  	</div>
+                        <div class="control-group">
+                            <label class="control-label" for="gh_project">GitHub project</label>
+                            <div class="controls">
+                                <input type="text" id="gh_project" name="gh_project" placeholder="rg3/youtube-dl">
+                            </div>
+                        </div>
 
-					  	<div class="control-group">
-					    	<label class="control-label" for="cronjob">Schedule</label>
-					    	<div class="controls">
-					      		<select id="cronjob" name="cronjob">
-							  	{% for cronjob in cron_list %}
-								    <option value="{{ cronjob.id }}">{{ cronjob.description }}</option>
-								{% endfor %}
-								</select>
-					    	</div>
-					  	</div>
+                        <div class="control-group">
+                            <label class="control-label" for="cronjob">Schedule</label>
+                            <div class="controls">
+                                <select id="cronjob" name="cronjob">
+                                {% for cronjob in cron_list %}
+                                    <option value="{{ cronjob.id }}">{{ cronjob.description }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
 
-					  	<div class="control-group">
-				  			<button class="btn btn-primary btn-large span4" type="submit">Submit</button>	
-				  		</div>
+                        <div class="control-group">
+                            <button class="btn btn-primary btn-large span4" type="submit">Submit</button>   
+                        </div>
 
-					</div><div class="offset1 span5">
+                    </div><div class="offset1 span5">
 
-						<div class="control-group">
-					    	<label class="control-label" for="motivation">Write a line to explain why you need recurrent tests</label>
-					    	<div class="controls">
-					      		<textarea id="motivation" name="motivation" rows="3" class="span4"></textarea>
-					    	</div>
-					  	</div>
+                        <div class="control-group">
+                            <label class="control-label" for="motivation">Write a line to explain why you need recurrent tests</label>
+                            <div class="controls">
+                                <textarea id="motivation" name="motivation" rows="3" class="span4"></textarea>
+                            </div>
+                        </div>
 
-						<div class="control-group">
-					    	<label class="control-label" for="special_requests">Special requests? (Schedule, ...)</label>
-					    	<div class="controls">
-					      		<textarea id="special_requests" name="special_requests" rows="3" class="span4"></textarea>
-					    	</div>
-					  	</div>
+                        <div class="control-group">
+                            <label class="control-label" for="special_requests">Special requests? (Schedule, ...)</label>
+                            <div class="controls">
+                                <textarea id="special_requests" name="special_requests" rows="3" class="span4"></textarea>
+                            </div>
+                        </div>
 
-					</div></div>
-		  			
-				</form>
+                    </div></div>
+                    
+                </form>
 
                 <h3>Scheduled triggers</h3>
-		        {% if entry_list %}
-		            <table class="table table-striped">
-	                	<thead><tr>
-	                		<td>Enabled</td>
-		                	<td>Project name</td>
-		                	<td>Schedule</td>
-		                </tr></thead>
-		            {% for cron in entry_list %}
-		                <tr>
-	                		<td>{% if cron.approved %} <i class="icon-play"></i> {% else %} <i class="icon-stop"></i> {% endif %}</td>
-		                	<td>{{ cron.gh_project }}</td>
-		                	<td>{{ cron.cronjob.description }}</td>
-		                </tr>
-		            {% endfor %}
-		            </table>
-		        {% else %}
-		            <p>No crons on file.</p>
-		        {% endif %}
+                {% if entry_list %}
+                    <table class="table table-striped">
+                        <thead><tr>
+                            <td>Enabled</td>
+                            <td>Project name</td>
+                            <td>Schedule</td>
+                        </tr></thead>
+                    {% for cron in entry_list %}
+                        <tr>
+                            <td>{% if cron.approved %} <i class="icon-play"></i> {% else %} <i class="icon-stop"></i> {% endif %}</td>
+                            <td>{{ cron.gh_project }}</td>
+                            <td>{{ cron.cronjob.description }}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                {% else %}
+                    <p>No crons on file.</p>
+                {% endif %}
 
             </div>
 
@@ -119,11 +119,11 @@
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
 
-        <script src="/static/js/vendor/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}js/vendor/bootstrap.min.js"></script>
 
-        <script src="/static/js/plugins.js"></script>
-        <script src="/static/js/main.js"></script>
+        <script src="{{ STATIC_URL }}js/plugins.js"></script>
+        <script src="{{ STATIC_URL }}js/main.js"></script>
     </body>
 </html>

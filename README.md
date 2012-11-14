@@ -9,7 +9,7 @@ At Travis they will eventually implement cron (ref: [travis-ci/travis-ci#582](ht
 
 This project is made of two parts:
 
-* A Django web app (running at http://travis-cron.pythonanywhere.com) that lets users add new triggers to the queue.
+* A Django web app (running at http://traviscron.pythonanywhere.com) that lets users add new triggers to the queue.
 * A Python module, `travis_ping`, that given a GH project name and a Travis OAuth token, triggers a rebuild.
 
 The actual work is done by a continuously running process, crontab-like: `python manage.py runworker`.
