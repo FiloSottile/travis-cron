@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from crons.models import Entry, Cronjob
-from time import sleep
+from time import sleep, time
 from travis_ping import travis_ping
 
 def ping(entry):
@@ -9,9 +9,15 @@ def ping(entry):
     return travis_ping(travis_token, repository)
 
 class Command(BaseCommand):
-    help = 'Run the worker that performs the pings to Travis'
+    help = ('Run the worker that performs the pings to Travis. '
+            'If invoked with an argument, this should be the number of seconds every which this command is run by cron; '
+            'otherwise it will run continuously.')
 
     def handle(self, *args, **options):
+        started = time()
+        frequency = None
+        if len(args) > 0:
+            frequency = int(args[0])
         self.stdout.write('[*] Starting...\n')
         while True:
             jobs = Cronjob.objects.all()
@@ -25,6 +31,9 @@ class Command(BaseCommand):
                 job.save()
             before_next = min(map(lambda job: job.before_next_run(), jobs))
             before_next = 0 if before_next < 0 else int(before_next + 1)
+            if frequency and (time() + before_next) > (started + frequency):
+                    self.stdout.write('[-] Closing...\n')
+                    break
             self.stdout.write('[-] Sleeping ' + str(before_next) + ' seconds...\n')
             self.stdout.flush()
             sleep(before_next)
