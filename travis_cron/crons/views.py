@@ -69,7 +69,7 @@ def callback(request):
     response = json.loads(urllib2.urlopen(req).read())
 
     if 'access_token' in response and response['access_token']:
-        data = { 'token': response['access_token'] }
+        data = { 'github_token': response['access_token'] }
         req = urllib2.Request('https://api.travis-ci.org/auth/github', urlencode(data))
         req.add_header('Accept', 'application/json')
         travis_response = json.loads(urllib2.urlopen(req).read())
