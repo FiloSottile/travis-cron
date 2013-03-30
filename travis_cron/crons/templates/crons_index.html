@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="control-group">
-                            <button class="btn btn-primary btn-large span4" type="submit">Submit</button>   
+                            <button class="btn btn-primary btn-large span4" type="submit">Submit</button>
                         </div>
 
                     </div><div class="offset1 span5">
@@ -88,7 +88,7 @@
                         </div>
 
                     </div></div>
-                    
+
                 </form>
 
                 <h3>Scheduled triggers</h3>
@@ -102,7 +102,7 @@
                     {% for cron in entry_list %}
                         <tr>
                             <td>{% if cron.approved %} <i class="icon-play"></i> {% else %} <i class="icon-stop"></i> {% endif %}</td>
-                            <td>{{ cron.gh_project }}</td>
+                            <td><a href="https://github.com/{{ cron.gh_project }}">{{ cron.gh_project }}</a></td>
                             <td>{{ cron.cronjob.description }}</td>
                         </tr>
                     {% endfor %}
