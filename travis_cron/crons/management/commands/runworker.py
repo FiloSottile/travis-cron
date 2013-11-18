@@ -29,6 +29,10 @@ class Command(BaseCommand):
                     ping(entry)
                 job.run_now()
                 job.save()
+
+            self.stdout.write('[-] Pinging myself as a Dead Man Snitch...\n')
+            ping(Entry.objects.get(gh_project="FiloSottile/travis-cron"))
+
             before_next = min(map(lambda job: job.before_next_run(), jobs))
             before_next = 0 if before_next < 0 else int(before_next + 1)
             if frequency and (time() + before_next) > (started + frequency):
