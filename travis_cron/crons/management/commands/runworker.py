@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from crons.models import Entry, Cronjob
 from time import sleep, time
 from travis_ping import travis_ping
+from traceback import print_exc
 
 def ping(entry):
     travis_token = entry.travis_token
@@ -26,7 +27,8 @@ class Command(BaseCommand):
                 self.stdout.write('[+] Running ' + job.description + '...\n')
                 for entry in job.entry_set.filter(approved=True).exclude(travis_token=''):
                     self.stdout.write('[+] Ping ' + entry.gh_project + '\n')
-                    ping(entry)
+                    try: ping(entry)
+                    except: print_exc()
                 job.run_now()
                 job.save()
 
