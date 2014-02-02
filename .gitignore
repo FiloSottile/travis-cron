@@ -1,3 +1,4 @@
 db.sqlite
 *.pyc
 confidential_settings.py
+travis_cron/worker.log
